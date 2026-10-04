@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<!-- Created by Erion Nezha — © 2026 All rights reserved -->
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b0b14">
+<meta name="description" content="Mbrëmja Jonë — loja romantike për çifte, vetëm për 18+. 64 karta në 4 nivele, duke përfshirë EROZONE.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%9E%3C/text%3E%3C/svg%3E">
+<title>Mbrëmja Jonë — Loja për Çifte 🔞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14; --bg2:#12121f; --card:#171728; --gold:#d4af37; --gold-dim:#8a6f1f;
+  --rose:#ff4d6d; --rose-deep:#c9184a; --txt:#f2ecdf; --muted:#9a93a8;
+  --truth:#4dabf7; --dare:#ff6b6b; --both:#b197fc;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+#fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+body{
+  font-family:'Inter',system-ui,sans-serif; color:var(--txt);
+  background:
+    radial-gradient(600px 400px at 15% 10%, rgba(201,24,74,.16), transparent 60%),
+    radial-gradient(700px 500px at 85% 85%, rgba(212,175,55,.10), transparent 60%),
+    linear-gradient(160deg,#0b0b14 0%,#141024 55%,#0b0b14 100%);
+  min-height:100vh; min-height:100dvh;
+  display:flex; flex-direction:column; align-items:center;
+  padding:24px 16px 40px; overflow-x:hidden;
+}
+h1,h2,.serif{font-family:'Playfair Display',Georgia,serif}
+.wrap{width:100%;max-width:460px;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+.screen{display:none;width:100%;flex-direction:column;align-items:center;animation:fadeUp .45s ease}
+.screen.active{display:flex}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.logo{font-size:15px;letter-spacing:4px;text-transform:uppercase;margin-bottom:6px;font-weight:700;
+  background:linear-gradient(100deg,#8a6f1f,#d4af37 30%,#ffedb5 50%,#d4af37 70%,#8a6f1f);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 4.5s linear infinite}
+@keyframes shine{to{background-position:220% center}}
+.big{font-size:clamp(30px,8vw,42px);text-align:center;line-height:1.15;margin-bottom:10px}
+.big em{color:var(--rose);font-style:italic}
+.sub{color:var(--muted);text-align:center;font-size:15px;line-height:1.6;margin-bottom:26px;max-width:340px}
+.age-badge{font-size:64px;margin:26px 0 10px;filter:drop-shadow(0 0 24px rgba(255,77,109,.5))}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:15px 20px;border-radius:16px;border:none;cursor:pointer;
+  font-size:16px;font-weight:700;font-family:'Inter',sans-serif;
+  transition:transform .12s ease, box-shadow .2s ease, filter .2s;
+}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:linear-gradient(135deg,#e8c55a,#d4af37 55%,#a8821f);color:#1a1405;box-shadow:0 8px 28px rgba(212,175,55,.35);position:relative;overflow:hidden}
+.btn-gold::before{content:"";position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:skewX(-20deg);animation:sweep 4.5s ease-in-out infinite;pointer-events:none}
+@keyframes sweep{0%,55%{left:-80%}100%{left:140%}}
+.btn-rose{background:linear-gradient(135deg,#ff5c7a,#c9184a);color:#fff;box-shadow:0 8px 28px rgba(201,24,74,.4)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--txt);border:1px solid rgba(255,255,255,.14);box-shadow:none}
+.btn-row{display:flex;gap:10px;width:100%}
+.btn-row .btn{flex:1}
+.mt{margin-top:14px}.mt2{margin-top:22px}
+.field{width:100%;margin-bottom:14px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px;letter-spacing:.5px}
+.field input{
+  width:100%;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.05);color:var(--txt);font-size:16px;font-family:'Inter',sans-serif;outline:none;
+}
+.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.18)}
+.pin-dots{display:flex;gap:12px;justify-content:center;margin:18px 0 6px}
+.pin-dots span{width:18px;height:18px;border-radius:50%;border:2px solid var(--gold-dim);transition:all .15s}
+.pin-dots span.on{background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px rgba(212,175,55,.7)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,76px);gap:10px;justify-content:center;margin-top:14px}
+.pin-pad button{
+  width:76px;height:60px;border-radius:14px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.05);color:var(--txt);font-size:22px;font-weight:600;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:transform .1s;
+}
+.pin-pad button:active{transform:scale(.93);background:rgba(212,175,55,.2)}
+.pin-pad button.fn{font-size:15px;color:var(--muted)}
+.level-grid{display:grid;gap:12px;width:100%}
+.level{
+  text-align:left;padding:18px;border-radius:18px;cursor:pointer;color:var(--txt);
+  background:linear-gradient(150deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.12);transition:transform .12s, border-color .2s;
+  font-family:'Inter',sans-serif;width:100%;
+}
+.level:active{transform:scale(.98)}
+.level .lic{font-size:30px}
+.level h3{font-size:19px;margin:8px 0 4px;font-family:'Playfair Display',serif}
+.level p{font-size:13.5px;color:var(--muted);line-height:1.5}
+.lcnt{display:inline-block;margin-top:8px;font-size:11px;letter-spacing:2px;color:var(--gold-dim);
+  border:1px solid rgba(212,175,55,.3);padding:4px 10px;border-radius:99px}
+.level.l1{border-color:rgba(255,77,109,.4)}
+.level.l2{border-color:rgba(255,107,107,.45)}
+.level.l3{border-color:rgba(212,175,55,.5);background:linear-gradient(150deg,rgba(212,175,55,.12),rgba(255,255,255,.02))}
+.level.l4{border-color:rgba(255,30,60,.65);background:linear-gradient(150deg,rgba(255,30,60,.16),rgba(20,5,10,.4));box-shadow:0 0 24px rgba(255,30,60,.18)}
+.level.l4 h3{color:#ff5c7a;letter-spacing:3px}
+.pulse{display:inline-block;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 6px rgba(255,30,60,.6))}50%{transform:scale(1.18);filter:drop-shadow(0 0 16px rgba(255,30,60,.95))}}
+.no-skip-note{display:none;width:100%;text-align:center;font-size:13px;color:#ff8fa3;
+  background:rgba(255,30,60,.1);border:1px solid rgba(255,30,60,.4);
+  padding:10px 14px;border-radius:12px;margin-top:12px}
+.no-skip-note.on{display:block}
+.turnbar{
+  width:100%;text-align:center;padding:12px 16px;border-radius:14px;margin-bottom:16px;
+  background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.35);
+  font-size:15px;
+}
+.turnbar b{color:var(--gold)}
+.scorebar{display:flex;justify-content:center;gap:18px;margin-bottom:14px;font-size:14px;color:var(--muted)}
+.scorebar b{color:var(--txt);font-size:16px}
+.card-scene{width:100%;perspective:1200px;margin-bottom:8px}
+.card{
+  position:relative;width:100%;min-height:300px;transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1.2), box-shadow .5s ease;
+  border-radius:22px;
+}
+.card.flipped{transform:rotateY(180deg)}
+.card.glow1{box-shadow:0 0 0 1px rgba(255,77,109,.35),0 0 46px rgba(255,77,109,.30),0 22px 60px rgba(0,0,0,.55)}
+.card.glow2{box-shadow:0 0 0 1px rgba(255,122,80,.38),0 0 46px rgba(255,122,80,.32),0 22px 60px rgba(0,0,0,.55)}
+.card.glow3{box-shadow:0 0 0 1px rgba(212,175,55,.45),0 0 50px rgba(212,175,55,.35),0 22px 60px rgba(0,0,0,.55)}
+.card.glow4{animation:eroPulse 2.2s ease-in-out infinite}
+@keyframes eroPulse{
+  0%,100%{box-shadow:0 0 0 1px rgba(255,30,60,.5),0 0 40px rgba(255,30,60,.35),0 22px 60px rgba(0,0,0,.55)}
+  50%{box-shadow:0 0 0 1px rgba(255,30,60,.7),0 0 74px rgba(255,30,60,.55),0 22px 60px rgba(0,0,0,.55)}
+}
+.card-scene.deal{animation:dealIn .55s cubic-bezier(.2,.7,.3,1.08)}
+@keyframes dealIn{from{opacity:0;transform:translateY(28px) rotate(-1.6deg) scale(.96)}}
+.face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:22px;padding:28px 22px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;gap:14px;
+}
+.face.front{
+  background:linear-gradient(150deg,#1d1d33,#101020);
+  border:1px solid rgba(212,175,55,.35);
+}
+.face.front .q{font-size:64px;filter:drop-shadow(0 0 18px rgba(212,175,55,.5));animation:floaty 3.2s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.face.front p{color:var(--muted);font-size:14px}
+.face.back{
+  transform:rotateY(180deg);
+  background:linear-gradient(150deg,#1e1e34 0%,#141424 100%);
+  border:1px solid rgba(255,255,255,.14);
+  justify-content:flex-start;padding-top:24px;
+  overflow-y:auto;
+}
+.ctype{
+  font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  padding:6px 14px;border-radius:99px;
+}
+.ctype.truth{background:rgba(77,171,247,.16);color:var(--truth);border:1px solid rgba(77,171,247,.4)}
+.ctype.dare{background:rgba(255,107,107,.14);color:var(--dare);border:1px solid rgba(255,107,107,.4)}
+.ctype.both{background:rgba(177,151,252,.14);color:var(--both);border:1px solid rgba(177,151,252,.4)}
+.ctext{font-family:'Playfair Display',Georgia,serif;font-size:21px;line-height:1.55;font-style:italic}
+.clevel{font-size:12px;color:var(--muted);letter-spacing:1px}
+.progress{font-size:13px;color:var(--muted);margin:10px 0 8px;letter-spacing:1px}
+.pbar{width:100%;height:5px;border-radius:99px;background:rgba(255,255,255,.08);margin:0 0 16px;overflow:hidden}
+.pbar div{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--rose),var(--gold));transition:width .5s ease;box-shadow:0 0 10px rgba(212,175,55,.6)}
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(80px);
+  background:#1e1e34;border:1px solid rgba(212,175,55,.4);color:var(--txt);
+  padding:13px 20px;border-radius:14px;font-size:14px;max-width:90vw;text-align:center;
+  opacity:0;transition:all .35s ease;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.topbar{width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.topbar .logo{margin:0}
+.linkbtn{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;text-decoration:underline;font-family:'Inter',sans-serif}
+.foot{margin-top:34px;font-size:11.5px;color:#5c5670;letter-spacing:.5px;text-align:center}
+@media (prefers-reduced-motion:reduce){
+  .logo,.btn-gold::before,.pulse,.face.front .q,.card.glow4{animation:none!important}
+}
+.warn{font-size:12.5px;color:var(--gold);background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);
+  padding:10px 14px;border-radius:12px;margin-bottom:16px;line-height:1.5;text-align:center}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<div class="wrap">
+
+  <!-- 1. AGE GATE -->
+  <div class="screen" id="s-age">
+    <div class="age-badge">🔞</div>
+    <div class="logo">Mbrëmja Jonë</div>
+    <h1 class="big">Loja për çifte<br><em>vetëm për të rritur</em></h1>
+    <p class="sub">Kjo lojë përmban pyetje dhe sfida romantike/erotike. Është e destinuar vetëm për çifte adulte.</p>
+    <p class="sub" style="font-weight:700;color:var(--txt)">A je 18 vjeç ose më shumë?</p>
+    <div class="btn-row">
+      <button class="btn btn-gold" id="ageYes">Po, jam 18+ 🔥</button>
+      <button class="btn btn-ghost" id="ageNo">Jo</button>
+    </div>
+  </div>
+
+  <!-- 2. PIN -->
+  <div class="screen" id="s-pin">
+    <div class="logo">Mbrëmja Jonë</div>
+    <h2 class="big" id="pinTitle" style="font-size:28px">Vendos një PIN</h2>
+    <p class="sub" id="pinSub">Zgjidh një PIN 4-shifror — loja hapet vetëm me të, që të rrijë private.</p>
+    <div class="pin-dots" id="pinDots"><span></span><span></span><span></span><span></span></div>
+    <div class="pin-pad" id="pinPad"></div>
+  </div>
+
+  <!-- 3. SETUP -->
+  <div class="screen" id="s-setup">
+    <div class="logo">Mbrëmja Jonë</div>
+    <h2 class="big" style="font-size:30px">Kush luan <em>sonte?</em></h2>
+    <p class="sub">Shkruani emrat (ose nofkat) tuaja.</p>
+    <div class="field"><label>LOJTARI 1 💙</label><input id="name1" maxlength="20" placeholder="p.sh. Ai" autocomplete="off"></div>
+    <div class="field"><label>LOJTARI 2 ❤️</label><input id="name2" maxlength="20" placeholder="p.sh. Ajo" autocomplete="off"></div>
+    <button class="btn btn-rose mt" id="startBtn">Fillojmë 😏</button>
+  </div>
+
+  <!-- 4. LEVELS -->
+  <div class="screen" id="s-levels">
+    <div class="topbar">
+      <div class="logo">Mbrëmja Jonë</div>
+      <button class="linkbtn" id="resetBtn">Rifillo ↺</button>
+    </div>
+    <h2 class="big" style="font-size:28px;margin-bottom:18px">Zgjidh <em>nivelin</em></h2>
+    <div class="level-grid">
+      <button class="level l1" data-lv="1">
+        <div class="lic">💋</div><h3>Niveli 1 — Shkëndija</h3>
+        <p>Flirt i ëmbël dhe romantik. Për t'u ngrohur…</p>
+        <span class="lcnt">16 KARTA</span>
+      </button>
+      <button class="level l2" data-lv="2">
+        <div class="lic">🔥</div><h3>Niveli 2 — Tensioni</h3>
+        <p>Më e guximshme. Shumë më e guximshme.</p>
+        <span class="lcnt">16 KARTA</span>
+      </button>
+      <button class="level l3" data-lv="3">
+        <div class="lic">🌙</div><h3>Niveli 3 — Pas Mesnate</h3>
+        <p>Vetëm për të rritur. Pa kufij, pa turp.</p>
+        <span class="lcnt">16 KARTA</span>
+      </button>
+      <button class="level l4" data-lv="4">
+        <div class="lic pulse">⛔</div><h3>EROZONE</h3>
+        <p>Zona e ndaluar. Këtu <b>s'ka ikje</b> — çdo kartë DUHET kryer. 😈</p>
+        <span class="lcnt">16 KARTA</span>
+      </button>
+    </div>
+    <div class="warn mt2">📜 Rregulli i artë: kush e kalon një kartë, i detyrohet tjetrit një <b>dëshirë</b> — që e zgjedh ai/ajo sonte.</div>
+  </div>
+
+  <!-- 5. GAME -->
+  <div class="screen" id="s-game">
+    <div class="topbar">
+      <div class="logo" id="gameLevelName">Mbrëmja Jonë</div>
+      <button class="linkbtn" id="backBtn">← Nivelet</button>
+    </div>
+    <div class="scorebar"><span><span id="nm1"></span> <b id="sc1">0</b></span><span style="color:var(--gold)">✦</span><span><b id="sc2">0</b> <span id="nm2"></span></span></div>
+    <div class="turnbar" id="turnBar"></div>
+    <div class="card-scene">
+      <div class="card" id="card">
+        <div class="face front"><div class="q">💌</div><p>Prek kartën për ta kthyer</p></div>
+        <div class="face back">
+          <div class="ctype" id="cType"></div>
+          <div class="ctext" id="cText"></div>
+          <div class="clevel" id="cLevel"></div>
+        </div>
+      </div>
+    </div>
+    <div class="progress" id="progress"></div>
+    <div class="pbar"><div id="pfill"></div></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" id="doneBtn" disabled style="opacity:.4">E bëra ✅</button>
+      <button class="btn btn-ghost" id="skipBtn" disabled style="opacity:.4">Kalo ⏭</button>
+    </div>
+    <div class="no-skip-note" id="noSkip">😈 Në EROZONE s'ka ikje — karta DUHET kryer.</div>
+  </div>
+
+  <!-- 6. DECK END -->
+  <div class="screen" id="s-end">
+    <div class="logo">Mbrëmja Jonë</div>
+    <div style="font-size:56px;margin:20px 0">🥂</div>
+    <h2 class="big" style="font-size:30px">Kuverta <em>mbaroi!</em></h2>
+    <p class="sub" id="endScore"></p>
+    <button class="btn btn-gold" id="reshuffleBtn">🔀 Përzie sërish</button>
+    <button class="btn btn-ghost mt" id="endLevelsBtn">Zgjidh nivel tjetër</button>
+  </div>
+
+  <div class="foot">Krijuar nga Erion Nezha — © 2026 · 🔞 Vetëm 18+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ===== KARTAT ===== */
+var DECKS = {
+1: [
+{t:"truth", x:"Cila ishte gjëja e parë që të tërhoqi te unë?"},
+{t:"truth", x:"Përshkruaje puthjen tonë të parë me vetëm 3 fjalë."},
+{t:"truth", x:"Cila këngë të kujton mua — dhe pse?"},
+{t:"truth", x:"Ku do të doje të shkonim vetëm të dy për një fundjavë?"},
+{t:"truth", x:"Cila është ëndrra jote më e ëmbël për ne të dy?"},
+{t:"truth", x:"Cila veshje imja të pëlqen më shumë kur e kam veshur?"},
+{t:"truth", x:"Kur e kuptove që po dashuroheshe me mua?"},
+{t:"truth", x:"Cili është momenti ynë më qesharak bashkë? Tregoje me detaje."},
+{t:"dare", x:"Më shiko në sy për 30 sekonda pa qeshur. Kush qesh, humb."},
+{t:"dare", x:"Më thuaj 3 komplimente — pa u përsëritur."},
+{t:"dare", x:"Mbamë dorën për 2 minutat e ardhshme, pa e lëshuar."},
+{t:"dare", x:"Më shkruaj tani një mesazh romantik dhe ma dërgo."},
+{t:"dare", x:"Më përqafo nga pas për 1 minutë të plotë. Pa folur."},
+{t:"dare", x:"Puthmë në ballë, pastaj në faqe… pastaj ku të duash ti."},
+{t:"both", x:"Të dy: mbyllni sytë dhe përshkruani me radhë shtëpinë e ëndrrave tuaja."},
+{t:"both", x:"Të dy: kërceni një vals të ngadaltë — pa muzikë, vetëm të përqafuar."}
+],
+2: [
+{t:"truth", x:"Cila pjesë e trupit tim të tërheq më shumë? Ji i/e sinqertë."},
+{t:"truth", x:"A ke fantazuar ndonjëherë për mua në një vend publik? Ku?"},
+{t:"truth", x:"Cila është gjëja më e guximshme që ke bërë ndonjëherë në shtrat?"},
+{t:"truth", x:"Çfarë do të doje të provoja unë sonte — por s'guxon ta kërkosh?"},
+{t:"truth", x:"Në shkallë 1–10, sa i/e ndezur je tani?"},
+{t:"truth", x:"Cili është sekreti yt më pikant që s'ma ke thënë kurrë?"},
+{t:"truth", x:"Çfarë do të doje të vishja (ose të mos vishja) sonte?"},
+{t:"truth", x:"Më përshkruaj me 3 fjalë ndyrë — po, lejohet."},
+{t:"dare", x:"Më bëj një masazh 3-minutësh — aty ku të tregoj unë."},
+{t:"dare", x:"Pëshpëritëm në vesh diçka që s'guxon ta thuash me zë të lartë."},
+{t:"dare", x:"Më ushqe me diçka të ëmbël… pa përdorur duart."},
+{t:"dare", x:"Hiq një rrobë timen. Ngadalë. Shumë ngadalë."},
+{t:"dare", x:"Kërce për mua 1 minutë — sa më joshëse të mundesh."},
+{t:"dare", x:"Më puth në qafë derisa të them “mjaft”."},
+{t:"dare", x:"Lëpi buzët e tua ngadalë, teksa më shikon drejt e në sy."},
+{t:"both", x:"Të dy: zhvishuni deri në të brendshme — dhe vazhdoni lojën kështu."}
+],
+3: [
+{t:"truth", x:"Përshkruaj me detaje çfarë do të doje të të bëja sonte."},
+{t:"truth", x:"Cili është vendi më i çuditshëm ku ke bërë dashuri?"},
+{t:"truth", x:"A të pëlqen kur të flas ndyrë? Cilat fjalë të ndezin më shumë?"},
+{t:"truth", x:"Cila është fantazia jote që s'e ke realizuar kurrë?"},
+{t:"truth", x:"Çfarë do të bëje me mua sikur të ishim vetëm 24 orë, pa telefona?"},
+{t:"truth", x:"Më trego një sekret erotik për veten — që askush tjetër s'e di."},
+{t:"truth", x:"Cila është gjëja më e ndyrë që ke menduar për mua sot?"},
+{t:"dare", x:"Lidhmë sytë — dhe më surprizo për 2 minuta."},
+{t:"dare", x:"Hiq të brendshmet e mia… me dhëmbë."},
+{t:"dare", x:"Më bëj të lutem për më shumë — pa më prekur aty ku dua."},
+{t:"dare", x:"Merr një kub akulli dhe shëtite ngadalë mbi trupin tim."},
+{t:"dare", x:"Bëj një striptease 2-minutësh për mua. Muzikën e zgjedh ti."},
+{t:"dare", x:"Ulu në prehërin tim dhe mos lëviz për 1 minutë — sado e vështirë ta kesh."},
+{t:"dare", x:"Më puth kudo — përveç buzëve — për 3 minuta rresht."},
+{t:"both", x:"Të dy: fikni dritat. Rregulli i vetëm — pa fjalë, vetëm prekje. 5 minuta."},
+{t:"both", x:"Të dy: loja mbaron këtu. Vazhdimi… është i juaji. 🌙"}
+],
+4: [
+{t:"truth", x:"Trego fantazinë tënde më të ndaluar — atë që s'ia ke thënë askujt. As mua."},
+{t:"truth", x:"Nëse do të të lidhja sonte, çfarë do të doje të të bëja së pari?"},
+{t:"truth", x:"Cila është gjëja më e turpshme që të ndez? Tani e ke rastin ta thuash."},
+{t:"truth", x:"A ke arritur ndonjëherë kulmin vetëm duke menduar për mua? Kur?"},
+{t:"truth", x:"Çfarë do të bëje sikur të të thoja tani: “bëj ç'të duash me mua”?"},
+{t:"truth", x:"Cilin rol zgjedh sonte: dominuesin apo të nënshtruarin? Pse?"},
+{t:"dare", x:"Zhvishu plotësisht. Tani. Ngadalë — pa i hequr sytë nga unë."},
+{t:"dare", x:"Lermë të t'i lidh duart. Për 5 minutat e ardhshme je plotësisht i/e imi/e imja."},
+{t:"dare", x:"Pëshpëritëm në vesh saktësisht çfarë do të më bësh… pastaj bëje."},
+{t:"dare", x:"Bëj dashuri me mua këtu, tani — pa shkuar në dhomë gjumi."},
+{t:"dare", x:"Përdor vetëm gojën për 3 minuta. Duart janë të ndaluara."},
+{t:"dare", x:"Ndërrojmë rolet: sonte ti më urdhëron mua. Unë bindem."},
+{t:"dare", x:"Shkruaj me buzët e tua një fjalë të ndyrë mbi trupin tim."},
+{t:"dare", x:"Më trego pa fjalë — vetëm me trupin tënd — sa shumë më do."},
+{t:"both", x:"Të dy: provoni sonte diçka që s'e keni provuar kurrë. Çfarëdo qoftë."},
+{t:"both", x:"Të dy: Erozone mbaron këtu. Mos u vishni. 🔥"}
+]};
+
+var TYPE_LABEL = {truth:"E vërtetë 💬", dare:"Sfidë 🔥", both:"Për të dy 💞"};
+var LEVEL_NAMES = {1:"💋 Niveli 1 — Shkëndija", 2:"🔥 Niveli 2 — Tensioni", 3:"🌙 Niveli 3 — Pas Mesnate", 4:"⛔ EROZONE"};
+
+var S = {level:0, deck:[], idx:0, turn:0, names:["Lojtari 1","Lojtari 2"], scores:[0,0], pin:null, pinBuf:"", pinMode:"set", cardOpen:false};
+
+/* ===== HELPERS ===== */
+function $(id){return document.getElementById(id);}
+function show(id){
+  var els=document.querySelectorAll(".screen");
+  for(var i=0;i<els.length;i++) els[i].classList.remove("active");
+  $(id).classList.add("active");
+  window.scrollTo(0,0);
+}
+var toastT=null;
+function toast(msg){
+  var t=$("toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("show");},2600);
+}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+/* ===== EFEKTE PREMIUM (xixëllonja + shkëndija) ===== */
+var RM=false;
+try{RM=window.matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+var fx=$("fx"), fctx=fx.getContext("2d"), FW=0, FH=0, embers=[], bursts=[], FT=0;
+function sizeFx(){
+  var DPR=Math.min(window.devicePixelRatio||1,2);
+  FW=window.innerWidth; FH=window.innerHeight;
+  fx.width=FW*DPR; fx.height=FH*DPR;
+  fx.style.width=FW+"px"; fx.style.height=FH+"px";
+  fctx.setTransform(DPR,0,0,DPR,0,0);
+}
+function initEmbers(){
+  embers=[];
+  for(var i=0;i<44;i++){
+    var c=Math.random();
+    embers.push({x:Math.random()*FW, y:Math.random()*FH,
+      r:.8+Math.random()*2.2, vy:.1+Math.random()*.28,
+      ph:Math.random()*6.283, sp:.4+Math.random()*.9,
+      c:c<.55?"212,175,55":(c<.8?"255,77,109":"255,240,220")});
+  }
+}
+function fxLoop(){
+  FT+=.016; fctx.clearRect(0,0,FW,FH);
+  var i,e,a;
+  for(i=0;i<embers.length;i++){
+    e=embers[i]; e.y-=e.vy; e.x+=Math.sin(FT*e.sp+e.ph)*.25;
+    if(e.y<-8){e.y=FH+8; e.x=Math.random()*FW;}
+    a=.22+.34*Math.abs(Math.sin(FT*e.sp+e.ph));
+    fctx.beginPath(); fctx.arc(e.x,e.y,e.r,0,6.283);
+    fctx.fillStyle="rgba("+e.c+","+a.toFixed(3)+")"; fctx.fill();
+  }
+  for(i=bursts.length-1;i>=0;i--){
+    e=bursts[i]; e.x+=e.vx; e.y+=e.vy; e.vy+=.06; e.life-=.022;
+    if(e.life<=0){bursts.splice(i,1); continue;}
+    fctx.globalAlpha=Math.max(e.life,0);
+    fctx.beginPath(); fctx.arc(e.x,e.y,e.r,0,6.283);
+    fctx.fillStyle=e.c; fctx.fill(); fctx.globalAlpha=1;
+  }
+  requestAnimationFrame(fxLoop);
+}
+function burst(x,y,n){
+  if(RM) return;
+  n=n||22;
+  var cols=["#ffd76a","#ff5c7a","#fff3d6","#d4af37"];
+  for(var i=0;i<n;i++){
+    var an=Math.random()*6.283, sp=1+Math.random()*3.4;
+    bursts.push({x:x, y:y, vx:Math.cos(an)*sp, vy:Math.sin(an)*sp-1,
+      r:1.5+Math.random()*2.6, life:1, c:cols[i%4]});
+  }
+}
+function cardCenter(){
+  var r=$("card").getBoundingClientRect();
+  return {x:r.left+r.width/2, y:r.top+r.height/2};
+}
+sizeFx(); initEmbers();
+window.addEventListener("resize",function(){sizeFx(); initEmbers();});
+if(!RM) requestAnimationFrame(fxLoop);
+
+/* ===== AGE GATE ===== */
+$("ageYes").onclick=function(){
+  try{sessionStorage.setItem("mj_age","1");}catch(e){}
+  enterPin();
+};
+$("ageNo").onclick=function(){
+  document.body.innerHTML="<div style='min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:sans-serif;color:#f2ecdf'><div><div style='font-size:56px;margin-bottom:16px'>🔞</div><h2>Kjo lojë është vetëm për 18+.</h2><p style='color:#9a93a8;margin-top:10px'>Shihemi kur të rritesh. 😌</p></div></div>";
+};
+
+/* ===== PIN ===== */
+function enterPin(){
+  try{S.pin=localStorage.getItem("mj_pin");}catch(e){S.pin=null;}
+  S.pinBuf=""; S.pinMode=S.pin?"enter":"set";
+  $("pinTitle").textContent=S.pin?"Shkruaj PIN-in":"Vendos një PIN";
+  $("pinSub").textContent=S.pin?"Loja është e kyçur — shkruaj PIN-in tënd 4-shifror.":"Zgjidh një PIN 4-shifror — loja hapet vetëm me të, që të rrijë private.";
+  drawDots(); buildPad(); show("s-pin");
+}
+function drawDots(){
+  var d=$("pinDots").children;
+  for(var i=0;i<4;i++) d[i].classList.toggle("on", i<S.pinBuf.length);
+}
+function buildPad(){
+  var pad=$("pinPad"); pad.innerHTML="";
+  var keys=["1","2","3","4","5","6","7","8","9","C","0","⌫"];
+  keys.forEach(function(k){
+    var b=document.createElement("button");
+    b.textContent=k; if(k==="C"||k==="⌫") b.className="fn";
+    b.onclick=function(){pinKey(k);};
+    pad.appendChild(b);
+  });
+}
+function pinKey(k){
+  if(k==="C"){S.pinBuf="";}
+  else if(k==="⌫"){S.pinBuf=S.pinBuf.slice(0,-1);}
+  else if(S.pinBuf.length<4){S.pinBuf+=k;}
+  drawDots();
+  if(S.pinBuf.length===4) setTimeout(pinDone,180);
+}
+function pinDone(){
+  if(S.pinBuf.length!==4){S.pinBuf="";drawDots();return;}
+  if(S.pinMode==="set"){
+    try{localStorage.setItem("mj_pin",S.pinBuf);}catch(e){}
+    S.pin=S.pinBuf; toast("PIN-i u ruajt 🔐");
+  }else{
+    if(S.pinBuf!==S.pin){toast("PIN i gabuar 😅");S.pinBuf="";drawDots();return;}
+  }
+  S.pinBuf=""; enterSetup();
+}
+
+/* ===== SETUP ===== */
+function enterSetup(){
+  try{
+    var n1=localStorage.getItem("mj_n1"), n2=localStorage.getItem("mj_n2");
+    if(n1)$("name1").value=n1; if(n2)$("name2").value=n2;
+  }catch(e){}
+  show("s-setup");
+}
+$("startBtn").onclick=function(){
+  var n1=$("name1").value.trim()||"Lojtari 1";
+  var n2=$("name2").value.trim()||"Lojtari 2";
+  S.names=[n1,n2]; S.scores=[0,0];
+  try{localStorage.setItem("mj_n1",n1);localStorage.setItem("mj_n2",n2);}catch(e){}
+  show("s-levels");
+};
+$("resetBtn").onclick=function(){
+  if(confirm("Të fshihen PIN-i, emrat dhe pikët?")){
+    try{localStorage.removeItem("mj_pin");localStorage.removeItem("mj_n1");localStorage.removeItem("mj_n2");}catch(e){}
+    location.reload();
+  }
+};
+
+/* ===== LEVELS ===== */
+var lvBtns=document.querySelectorAll(".level");
+for(var li=0;li<lvBtns.length;li++){
+  lvBtns[li].onclick=function(ev){
+    var e=ev||window.event;
+    if(e&&e.clientX) burst(e.clientX,e.clientY,16);
+    startLevel(parseInt(this.getAttribute("data-lv"),10));
+  };
+}
+function startLevel(lv){
+  S.level=lv; S.deck=shuffle(DECKS[lv].slice()); S.idx=0; S.turn=0; S.scores=[0,0];
+  $("gameLevelName").textContent=LEVEL_NAMES[lv];
+  $("nm1").textContent=S.names[0]; $("nm2").textContent=S.names[1];
+  updateScore();
+  show("s-game");
+  drawCard();
+}
+$("backBtn").onclick=function(){show("s-levels");};
+
+/* ===== GAME ===== */
+function updateScore(){$("sc1").textContent=S.scores[0];$("sc2").textContent=S.scores[1];}
+function drawCard(){
+  if(S.idx>=S.deck.length){ // kuverta mbaroi
+    $("pfill").style.width="100%";
+    $("endScore").textContent=S.names[0]+" "+S.scores[0]+" — "+S.scores[1]+" "+S.names[1];
+    show("s-end"); return;
+  }
+  var c=S.deck[S.idx];
+  var card=$("card");
+  card.className="card glow"+S.level;
+  var scene=card.parentElement;
+  scene.classList.remove("deal"); void scene.offsetWidth; scene.classList.add("deal");
+  S.cardOpen=false; setBtns(false);
+  $("turnBar").innerHTML="Radha e: <b>"+esc(S.names[S.turn])+"</b> 😏";
+  $("progress").textContent="KARTA "+(S.idx+1)+" / "+S.deck.length;
+  $("pfill").style.width=(S.idx/S.deck.length*100)+"%";
+  setTimeout(function(){
+    $("cType").textContent=TYPE_LABEL[c.t];
+    $("cType").className="ctype "+c.t;
+    $("cText").textContent=c.x;
+    $("cLevel").textContent=LEVEL_NAMES[S.level];
+  },120);
+}
+$("card").onclick=function(){
+  if(S.cardOpen) return;
+  S.cardOpen=true;
+  $("card").classList.add("flipped");
+  setTimeout(function(){setBtns(true);},450);
+};
+function setBtns(on){
+  $("doneBtn").disabled=!on;
+  $("doneBtn").style.opacity=on?"1":".4";
+  var noSkip=S.level===4;
+  $("skipBtn").style.display=noSkip?"none":"";
+  $("skipBtn").disabled=!on;
+  $("skipBtn").style.opacity=on?"1":".4";
+  $("noSkip").classList.toggle("on",noSkip);
+  $("doneBtn").parentElement.style.justifyContent=noSkip?"center":"";
+}
+$("doneBtn").onclick=function(){
+  if(!S.cardOpen)return;
+  S.scores[S.turn]++; updateScore();
+  var p=cardCenter(); burst(p.x,p.y,26);
+  toast("Bravo, "+S.names[S.turn]+"! +1 pikë 😘");
+  nextTurn();
+};
+$("skipBtn").onclick=function(){
+  if(!S.cardOpen)return;
+  var other=1-S.turn;
+  S.scores[other]++; updateScore();
+  toast("Dënimi: i detyrohesh "+S.names[other]+" një dëshirë 😏");
+  nextTurn();
+};
+function nextTurn(){S.turn=1-S.turn;S.idx++;drawCard();}
+$("reshuffleBtn").onclick=function(){startLevel(S.level);};
+$("endLevelsBtn").onclick=function(){show("s-levels");};
+
+/* ===== INIT ===== */
+(function init(){
+  var ok=false;
+  try{ok=sessionStorage.getItem("mj_age")==="1";}catch(e){}
+  if(ok) enterPin(); else show("s-age");
+})();
+</script>
+</body>
+</html>
